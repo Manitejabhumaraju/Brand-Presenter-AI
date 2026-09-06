@@ -112,8 +112,8 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     }
   }, [theme]);
 
-  const [userRole, setUserRoleState] = useState<UserRole>('brand');
-  const [activeTab, setActiveTab] = useState<string>('discover');
+  const [userRole, setUserRoleState] = useState<UserRole>('public');
+  const [activeTab, setActiveTab] = useState<string>('public_home');
   const [creators, setCreators] = useState<Creator[]>(mockCreators);
   const [selectedCreatorId, setSelectedCreatorId] = useState<string>('c1');
   const [compareCreatorIds, setCompareCreatorIds] = useState<string[]>(['c1', 'c2']);
