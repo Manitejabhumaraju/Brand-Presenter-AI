@@ -1,0 +1,48 @@
+[project]
+name = "brand-presenter-api"
+version = "0.1.0"
+description = "Backend API for Brand Presenter AI - a creator/brand marketplace platform."
+requires-python = ">=3.12"
+
+[tool.ruff]
+line-length = 110
+target-version = "py312"
+exclude = [".venv", "alembic/versions"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM", "C4"]
+# B008: FastAPI's Depends(...)-as-default-argument idiom.
+# UP042: SQLModel enum columns are documented/tested against the plain `str, Enum` pattern.
+# UP046: keep typing.Generic[T] for Page - broadly compatible across the pinned pydantic version.
+ignore = ["B008", "UP042", "UP046"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["app"]
+
+[tool.mypy]
+python_version = "3.12"
+ignore_missing_imports = true
+warn_unused_ignores = true
+disallow_untyped_defs = false
+exclude = ["^alembic/", "^tests/", "^\\.venv/"]
+
+# SQLModel does not ship a mypy plugin (unlike SQLAlchemy 2's own, which only covers plain
+# declarative models). Accessing a SQLModel class attribute for query building - e.g.
+# `select(User).where(User.id == x).order_by(User.created_at.desc())` - is only known to mypy
+# as the plain Python field type (str, datetime, ...), not a SQLAlchemy InstrumentedAttribute,
+# so comparisons/`.desc()`/`.asc()`/`join()` calls built from them report false positives here.
+# This is a scoped, documented limitation, not a runtime bug - the app is exercised end-to-end
+# by the pytest suite. Revisit if/when SQLModel ships first-class mypy support.
+[[tool.mypy.overrides]]
+module = [
+    "app.repositories.*",
+    "app.services.audit_service",
+    "app.services.audience_service",
+    "app.services.ai_service",
+    "app.services.notification_service",
+]
+disable_error_code = ["attr-defined", "arg-type", "union-attr", "assignment"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
