@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 import { Creator, Campaign, Shortlist, SavedSearch, Conversation, UserRole, Deliverable, PlatformType, CreatorType } from '../types';
 import { mockCreators } from '../data/mockCreators';
 import { mockCampaigns, mockShortlists, mockSavedSearches, mockConversations } from '../data/mockBrands';
@@ -72,11 +72,46 @@ interface AppContextType {
   notifications: Array<{ id: string; title: string; desc: string; time: string; read: boolean; type: string }>;
   markAllNotificationsRead: () => void;
   handleCreateInquiry: (creatorId: string, brief: { title: string; budget: number; objective: string; deliverables: string; platform: string }) => void;
+  theme: 'dark' | 'light';
+  setTheme: (theme: 'dark' | 'light') => void;
+  toggleTheme: () => void;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
 export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const [theme, setThemeState] = useState<'dark' | 'light'>(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('brand_presenter_theme');
+      if (saved === 'light' || saved === 'dark') return saved;
+    }
+    return 'dark';
+  });
+
+  const setTheme = (newTheme: 'dark' | 'light') => {
+    setThemeState(newTheme);
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('brand_presenter_theme', newTheme);
+      document.documentElement.setAttribute('data-theme', newTheme);
+      document.documentElement.classList.toggle('theme-light', newTheme === 'light');
+      document.documentElement.classList.toggle('light', newTheme === 'light');
+      document.documentElement.classList.toggle('dark', newTheme === 'dark');
+    }
+  };
+
+  const toggleTheme = () => {
+    setTheme(theme === 'dark' ? 'light' : 'dark');
+  };
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      document.documentElement.setAttribute('data-theme', theme);
+      document.documentElement.classList.toggle('theme-light', theme === 'light');
+      document.documentElement.classList.toggle('light', theme === 'light');
+      document.documentElement.classList.toggle('dark', theme === 'dark');
+    }
+  }, [theme]);
+
   const [userRole, setUserRoleState] = useState<UserRole>('brand');
   const [activeTab, setActiveTab] = useState<string>('discover');
   const [creators, setCreators] = useState<Creator[]>(mockCreators);
@@ -344,7 +379,10 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         setNotificationsOpen,
         notifications,
         markAllNotificationsRead,
-        handleCreateInquiry
+        handleCreateInquiry,
+        theme,
+        setTheme,
+        toggleTheme
       }}
     >
       {children}

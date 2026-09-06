@@ -160,9 +160,6 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({
             <span className="font-extrabold text-[15px] sm:text-[17px] tracking-tight bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
               AI
             </span>
-            <span className="hidden lg:inline-flex text-[9px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded-md bg-blue-500/10 text-blue-400 border border-blue-500/20 ml-0.5">
-              Verified
-            </span>
           </div>
 
           {showTagline && (

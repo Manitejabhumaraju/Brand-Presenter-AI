@@ -28,7 +28,7 @@ import { CompareModal } from './components/modals/CompareModal';
 import { ConnectPlatformModal } from './components/modals/ConnectPlatformModal';
 
 const MainLayout: React.FC = () => {
-  const { activeTab, setGlobalSearchOpen, userRole, currentCreatorUser } = useApp();
+  const { activeTab, setGlobalSearchOpen, userRole, currentCreatorUser, theme } = useApp();
 
   // Keyboard shortcut listener for Cmd+K
   useEffect(() => {
@@ -114,7 +114,9 @@ const MainLayout: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-100 flex flex-col font-sans antialiased selection:bg-emerald-500 selection:text-zinc-950">
+    <div className={`min-h-screen flex flex-col font-sans antialiased transition-colors duration-150 selection:bg-blue-500 selection:text-white ${
+      theme === 'light' ? 'theme-light bg-slate-50 text-slate-900' : 'theme-dark bg-[#080C14] text-slate-100'
+    }`}>
       
       {/* Top Navigation */}
       <Navbar />

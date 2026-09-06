@@ -13,7 +13,9 @@ import {
   Building2,
   UserCheck,
   Compass,
-  X
+  X,
+  Sun,
+  Moon
 } from 'lucide-react';
 
 export const Navbar: React.FC = () => {
@@ -28,7 +30,9 @@ export const Navbar: React.FC = () => {
     notificationsOpen,
     setNotificationsOpen,
     markAllNotificationsRead,
-    currentCreatorUser
+    currentCreatorUser,
+    theme,
+    toggleTheme
   } = useApp();
 
   const [roleMenuOpen, setRoleMenuOpen] = useState(false);
@@ -155,6 +159,30 @@ export const Navbar: React.FC = () => {
             )}
           </div>
 
+          {/* Theme Toggle (Bright Theme vs Dark Theme) */}
+          <button
+            onClick={toggleTheme}
+            aria-label={`Switch to ${theme === 'dark' ? 'bright' : 'dark'} theme`}
+            title={`Switch to ${theme === 'dark' ? 'Bright Theme (Light)' : 'Dark Theme (Executive)'}`}
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold transition-all border shadow-xs ${
+              theme === 'light'
+                ? 'bg-amber-500/15 text-amber-800 border-amber-300 hover:bg-amber-500/25'
+                : 'bg-slate-900/90 text-slate-300 border-slate-800 hover:bg-slate-800 hover:text-white'
+            }`}
+          >
+            {theme === 'light' ? (
+              <>
+                <Sun className="w-3.5 h-3.5 text-amber-600 animate-in spin-in-90 duration-200" />
+                <span className="font-bold text-[11px] text-amber-900">Bright</span>
+              </>
+            ) : (
+              <>
+                <Moon className="w-3.5 h-3.5 text-blue-400 animate-in spin-in-90 duration-200" />
+                <span className="font-bold text-[11px] text-slate-300">Dark</span>
+              </>
+            )}
+          </button>
+
           <div className="h-5 w-px bg-slate-800 mx-1 hidden sm:block" />
 
           {/* Role Mode Switcher */}
@@ -253,6 +281,38 @@ export const Navbar: React.FC = () => {
                     </div>
                     {userRole === 'public' && <Check className="w-4 h-4 text-cyan-400" />}
                   </button>
+                </div>
+
+                {/* Appearance Theme Selector */}
+                <div className="mt-1 pt-2 border-t border-slate-800 px-1">
+                  <div className="text-[10px] font-bold text-slate-500 uppercase tracking-widest px-2 pb-1.5 flex items-center justify-between">
+                    <span>Appearance</span>
+                    <span className="text-[9px] text-blue-400 lowercase">{theme} theme</span>
+                  </div>
+                  <div className="grid grid-cols-2 gap-1 bg-slate-950/80 p-1 rounded-xl border border-slate-800/80">
+                    <button
+                      onClick={() => toggleTheme()}
+                      className={`flex items-center justify-center gap-1.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${
+                        theme === 'light'
+                          ? 'bg-white text-slate-900 shadow-sm border border-slate-200'
+                          : 'text-slate-400 hover:text-slate-200'
+                      }`}
+                    >
+                      <Sun className="w-3 h-3 text-amber-500" />
+                      <span>Bright</span>
+                    </button>
+                    <button
+                      onClick={() => toggleTheme()}
+                      className={`flex items-center justify-center gap-1.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${
+                        theme === 'dark'
+                          ? 'bg-slate-800 text-white shadow-sm border border-slate-700'
+                          : 'text-slate-400 hover:text-slate-200'
+                      }`}
+                    >
+                      <Moon className="w-3 h-3 text-blue-400" />
+                      <span>Dark</span>
+                    </button>
+                  </div>
                 </div>
               </div>
             )}

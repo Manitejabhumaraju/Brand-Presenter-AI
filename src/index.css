@@ -86,3 +86,193 @@
   background: rgba(255, 255, 255, 0.22);
 }
 
+/* ==========================================================================
+   BRIGHT / LIGHT THEME SYSTEM
+   ========================================================================== */
+
+html[data-theme="light"],
+.theme-light {
+  color-scheme: light;
+}
+
+html[data-theme="light"] body,
+.theme-light body {
+  background-color: #F8FAFC !important;
+  color: #0F172A !important;
+}
+
+/* Canvas & Root Surfaces */
+html[data-theme="light"] .bg-zinc-950,
+html[data-theme="light"] .bg-\[\#080C14\],
+html[data-theme="light"] .bg-\[\#0A0E1A\],
+html[data-theme="light"] .bg-\[\#070A12\],
+html[data-theme="light"] .bg-\[\#060910\] {
+  background-color: #F8FAFC !important;
+}
+
+/* Navigation & Header */
+html[data-theme="light"] header {
+  background: rgba(255, 255, 255, 0.92) !important;
+  border-bottom: 1px solid #E2E8F0 !important;
+  color: #0F172A !important;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04) !important;
+}
+
+/* Sidebar */
+html[data-theme="light"] aside {
+  background: rgba(255, 255, 255, 0.65) !important;
+  border-right: 1px solid #E2E8F0 !important;
+}
+
+/* Cards & Elevated Panels */
+html[data-theme="light"] .bg-slate-900,
+html[data-theme="light"] .bg-zinc-900,
+html[data-theme="light"] [class*="bg-slate-900/"],
+html[data-theme="light"] [class*="bg-zinc-900/"] {
+  background-color: #FFFFFF !important;
+  border-color: #E2E8F0 !important;
+  box-shadow: 0 1px 4px 0 rgba(15, 23, 42, 0.05), 0 2px 10px -2px rgba(15, 23, 42, 0.03) !important;
+}
+
+/* Inner card wells, inputs, code snippets */
+html[data-theme="light"] .bg-slate-950,
+html[data-theme="light"] [class*="bg-slate-950/"],
+html[data-theme="light"] [class*="bg-zinc-950/"] {
+  background-color: #F1F5F9 !important;
+  border-color: #E2E8F0 !important;
+}
+
+/* Subtle background buttons & controls */
+html[data-theme="light"] .bg-slate-800,
+html[data-theme="light"] .bg-zinc-800,
+html[data-theme="light"] [class*="bg-slate-800/"],
+html[data-theme="light"] [class*="bg-zinc-800/"] {
+  background-color: #E2E8F0 !important;
+  border-color: #CBD5E1 !important;
+}
+
+html[data-theme="light"] .hover\:bg-slate-800:hover,
+html[data-theme="light"] .hover\:bg-slate-850:hover,
+html[data-theme="light"] .hover\:bg-zinc-800:hover,
+html[data-theme="light"] .hover\:bg-zinc-750:hover {
+  background-color: #E2E8F0 !important;
+}
+
+html[data-theme="light"] .hover\:bg-slate-800\/50:hover,
+html[data-theme="light"] .hover\:bg-slate-800\/80:hover {
+  background-color: #F1F5F9 !important;
+}
+
+/* Form Inputs & Selects */
+html[data-theme="light"] input[type="text"],
+html[data-theme="light"] input[type="number"],
+html[data-theme="light"] input[type="email"],
+html[data-theme="light"] input[type="password"],
+html[data-theme="light"] select,
+html[data-theme="light"] textarea {
+  background-color: #FFFFFF !important;
+  border-color: #CBD5E1 !important;
+  color: #0F172A !important;
+}
+
+html[data-theme="light"] input::placeholder,
+html[data-theme="light"] textarea::placeholder {
+  color: #94A3B8 !important;
+}
+
+/* Borders & Dividers */
+html[data-theme="light"] .border-slate-800,
+html[data-theme="light"] .border-zinc-800,
+html[data-theme="light"] .border-slate-700,
+html[data-theme="light"] .border-zinc-700,
+html[data-theme="light"] [class*="border-slate-800/"],
+html[data-theme="light"] [class*="border-zinc-800/"],
+html[data-theme="light"] [class*="border-slate-700/"],
+html[data-theme="light"] [class*="divide-slate-800"],
+html[data-theme="light"] [class*="divide-zinc-800"] {
+  border-color: #E2E8F0 !important;
+}
+
+/* Typography Overrides */
+html[data-theme="light"] .text-white,
+html[data-theme="light"] .text-zinc-100,
+html[data-theme="light"] .text-slate-100 {
+  color: #0F172A !important;
+}
+
+html[data-theme="light"] .text-zinc-200,
+html[data-theme="light"] .text-slate-200 {
+  color: #1E293B !important;
+}
+
+html[data-theme="light"] .text-zinc-300,
+html[data-theme="light"] .text-slate-300 {
+  color: #334155 !important;
+}
+
+html[data-theme="light"] .text-zinc-400,
+html[data-theme="light"] .text-slate-400 {
+  color: #64748B !important;
+}
+
+html[data-theme="light"] .text-zinc-500,
+html[data-theme="light"] .text-slate-500 {
+  color: #64748B !important;
+}
+
+/* Keep gradient clips & transparent texts properly styled */
+html[data-theme="light"] [class*="bg-clip-text"],
+html[data-theme="light"] .text-brand-gradient,
+html[data-theme="light"] .text-brand-cyan-blue {
+  -webkit-text-fill-color: transparent !important;
+  color: transparent !important;
+}
+
+/* Preserve bright white text inside vibrant solid gradient action buttons */
+html[data-theme="light"] button.bg-gradient-to-r,
+html[data-theme="light"] button.bg-gradient-to-r *,
+html[data-theme="light"] a.bg-gradient-to-r,
+html[data-theme="light"] a.bg-gradient-to-r *,
+html[data-theme="light"] button[class*="from-blue-600"]:not([class*="/15"]):not([class*="/20"]):not([class*="/10"]),
+html[data-theme="light"] button[class*="from-blue-600"]:not([class*="/15"]):not([class*="/20"]):not([class*="/10"]) *,
+html[data-theme="light"] a[class*="from-blue-600"]:not([class*="/15"]):not([class*="/20"]):not([class*="/10"]),
+html[data-theme="light"] a[class*="from-blue-600"]:not([class*="/15"]):not([class*="/20"]):not([class*="/10"]) *,
+html[data-theme="light"] .bg-blue-600,
+html[data-theme="light"] .bg-blue-600 *,
+html[data-theme="light"] .bg-brand-gradient,
+html[data-theme="light"] .bg-brand-gradient * {
+  color: #FFFFFF !important;
+}
+
+/* Sidebar active item text in light theme */
+html[data-theme="light"] aside button.font-semibold span {
+  color: #1D4ED8 !important;
+}
+
+/* Light mode Hero & Glass styling */
+html[data-theme="light"] .surface-glass {
+  background: rgba(255, 255, 255, 0.88) !important;
+  border: 1px solid rgba(226, 232, 240, 0.9) !important;
+  box-shadow: 0 10px 30px -10px rgba(37, 99, 235, 0.08) !important;
+}
+
+html[data-theme="light"] .surface-card {
+  background: #FFFFFF !important;
+  border: 1px solid #E2E8F0 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+}
+
+html[data-theme="light"] .surface-card-hover:hover {
+  background: #FFFFFF !important;
+  border-color: rgba(37, 99, 235, 0.4) !important;
+  box-shadow: 0 12px 30px -8px rgba(37, 99, 235, 0.12) !important;
+}
+
+/* Light mode scrollbar */
+html[data-theme="light"] ::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15) !important;
+}
+html[data-theme="light"] ::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.28) !important;
+}
+

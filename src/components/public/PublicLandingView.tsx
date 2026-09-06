@@ -17,7 +17,7 @@ import {
 import { formatNumber } from '../../utils/formatters';
 
 export const PublicLandingView: React.FC = () => {
-  const { creators, setUserRole, setActiveTab, setSelectedCreatorId } = useApp();
+  const { creators, setUserRole, setActiveTab, setSelectedCreatorId, theme } = useApp();
 
   const handleExploreDirectory = () => {
     setUserRole('brand');
@@ -33,9 +33,17 @@ export const PublicLandingView: React.FC = () => {
     <div className="space-y-12 pb-20 animate-in fade-in duration-150">
       
       {/* 1. HERO BENTO BLOCK */}
-      <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-b from-slate-900/95 via-[#0A0E1A] to-[#070A12] text-white p-8 sm:p-14 border border-slate-800/80 shadow-2xl">
+      <div className={`relative overflow-hidden rounded-[2.5rem] p-8 sm:p-14 border transition-all duration-200 ${
+        theme === 'light'
+          ? 'bg-gradient-to-b from-white via-slate-50 to-slate-100/90 text-slate-900 border-slate-200 shadow-xl'
+          : 'bg-gradient-to-b from-slate-900/95 via-[#0A0E1A] to-[#070A12] text-white border-slate-800/80 shadow-2xl'
+      }`}>
         {/* Subtle Ambient Radial Light Mesh */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-64 bg-gradient-to-b from-blue-600/10 via-purple-600/5 to-transparent blur-3xl pointer-events-none" />
+        <div className={`absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-64 blur-3xl pointer-events-none ${
+          theme === 'light'
+            ? 'bg-gradient-to-b from-blue-500/10 via-purple-500/5 to-transparent'
+            : 'bg-gradient-to-b from-blue-600/10 via-purple-600/5 to-transparent'
+        }`} />
         
         <div className="relative z-10 max-w-4xl mx-auto text-center space-y-7">
           
@@ -44,21 +52,29 @@ export const PublicLandingView: React.FC = () => {
             <BrandLogo variant="full" size="xl" />
           </div>
 
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-900/90 border border-slate-700/60 text-xs font-bold uppercase tracking-widest text-slate-300 shadow-inner">
+          <div className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full border text-xs font-bold uppercase tracking-widest shadow-inner ${
+            theme === 'light'
+              ? 'bg-slate-100 text-slate-700 border-slate-300/80'
+              : 'bg-slate-900/90 border-slate-700/60 text-slate-300'
+          }`}>
             <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
-            <span className="bg-gradient-to-r from-blue-400 via-purple-300 to-pink-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
               Enterprise Creator Commerce & Verified Intelligence
             </span>
           </div>
 
-          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.15] text-white">
+          <h1 className={`text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.15] ${
+            theme === 'light' ? 'text-slate-950' : 'text-white'
+          }`}>
             DISCOVER & CONTRACT <br />
-            <span className="bg-gradient-to-r from-blue-400 via-purple-400 via-pink-400 to-orange-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-blue-500 via-purple-500 via-pink-500 to-orange-500 bg-clip-text text-transparent">
               VERIFIED CREATORS
             </span> WITH ZERO GUESSWORK
           </h1>
 
-          <p className="text-slate-300 text-xs sm:text-base leading-relaxed max-w-2xl mx-auto font-normal">
+          <p className={`text-xs sm:text-base leading-relaxed max-w-2xl mx-auto font-normal ${
+            theme === 'light' ? 'text-slate-600' : 'text-slate-300'
+          }`}>
             Direct authorized API sync from YouTube, Instagram, TikTok & LinkedIn. No synthetic follower inflation, no vanity estimations. Real milestone escrow, audited pricing benchmarks, and transparent attribution.
           </p>
 
@@ -75,30 +91,48 @@ export const PublicLandingView: React.FC = () => {
 
             <button
               onClick={handleCreatorJoin}
-              className="w-full sm:w-auto px-8 py-3.5 bg-slate-900 hover:bg-slate-850 text-slate-200 hover:text-white font-bold text-xs rounded-full border border-slate-700/80 flex items-center justify-center gap-2 transition-all shadow-sm"
+              className={`w-full sm:w-auto px-8 py-3.5 font-bold text-xs rounded-full border flex items-center justify-center gap-2 transition-all shadow-sm ${
+                theme === 'light'
+                  ? 'bg-white hover:bg-slate-100 text-slate-800 border-slate-300'
+                  : 'bg-slate-900 hover:bg-slate-850 text-slate-200 hover:text-white border-slate-700/80'
+              }`}
             >
-              <UserCheck className="w-4 h-4 text-purple-400" />
+              <UserCheck className="w-4 h-4 text-purple-500" />
               <span>Claim Creator Profile</span>
             </button>
           </div>
 
           {/* Trust stats pill bar Bento */}
-          <div className="pt-8 border-t border-slate-800/80 grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
+          <div className={`pt-8 border-t grid grid-cols-2 sm:grid-cols-4 gap-6 text-center ${
+            theme === 'light' ? 'border-slate-200' : 'border-slate-800/80'
+          }`}>
             <div>
-              <div className="text-2xl sm:text-3xl font-black text-white tracking-tight">45,000+</div>
-              <div className="text-[11px] text-slate-400 font-medium mt-1">Verified High-Engagement Creators</div>
+              <div className={`text-2xl sm:text-3xl font-black tracking-tight ${theme === 'light' ? 'text-slate-900' : 'text-white'}`}>
+                45,000+
+              </div>
+              <div className={`text-[11px] font-medium mt-1 ${theme === 'light' ? 'text-slate-500' : 'text-slate-400'}`}>
+                Verified High-Engagement Creators
+              </div>
             </div>
             <div>
-              <div className="text-2xl sm:text-3xl font-black bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent tracking-tight">100%</div>
-              <div className="text-[11px] text-slate-400 font-medium mt-1">Official OAuth Platform Data</div>
+              <div className="text-2xl sm:text-3xl font-black bg-gradient-to-r from-blue-500 to-cyan-500 bg-clip-text text-transparent tracking-tight">100%</div>
+              <div className={`text-[11px] font-medium mt-1 ${theme === 'light' ? 'text-slate-500' : 'text-slate-400'}`}>
+                Official OAuth Platform Data
+              </div>
             </div>
             <div>
-              <div className="text-2xl sm:text-3xl font-black text-white tracking-tight">4.2x</div>
-              <div className="text-[11px] text-slate-400 font-medium mt-1">Average Campaign ROAS</div>
+              <div className={`text-2xl sm:text-3xl font-black tracking-tight ${theme === 'light' ? 'text-slate-900' : 'text-white'}`}>
+                4.2x
+              </div>
+              <div className={`text-[11px] font-medium mt-1 ${theme === 'light' ? 'text-slate-500' : 'text-slate-400'}`}>
+                Average Campaign ROAS
+              </div>
             </div>
             <div>
-              <div className="text-2xl sm:text-3xl font-black bg-gradient-to-r from-pink-400 to-orange-400 bg-clip-text text-transparent tracking-tight">₹18 Cr+</div>
-              <div className="text-[11px] text-slate-400 font-medium mt-1">Protected Milestone Escrow</div>
+              <div className="text-2xl sm:text-3xl font-black bg-gradient-to-r from-pink-500 to-orange-500 bg-clip-text text-transparent tracking-tight">₹18 Cr+</div>
+              <div className={`text-[11px] font-medium mt-1 ${theme === 'light' ? 'text-slate-500' : 'text-slate-400'}`}>
+                Protected Milestone Escrow
+              </div>
             </div>
           </div>
 
