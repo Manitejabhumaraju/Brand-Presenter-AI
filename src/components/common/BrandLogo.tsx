@@ -36,102 +36,17 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({
     );
   }
 
-  // Pure SVG/Vector Sculptural 'B' Emblem perfectly matching the 3D brand asset:
-  // Features:
-  // - The 3 vertical equalizer telemetry bars (purple, orange, coral)
-  // - The sculptural folded 'B' ribbon flowing blue -> purple -> magenta -> orange
-  // - The inset triangle play button
+  // Official brand mark (cropped from the brandpresenters.com logo asset)
   const Emblem = ({ iconSize = 36 }: { iconSize?: number }) => (
-    <div 
-      className="relative shrink-0 flex items-center justify-center select-none"
+    <div
+      className="relative shrink-0 flex items-center justify-center select-none rounded-lg overflow-hidden bg-white"
       style={{ width: iconSize, height: iconSize }}
     >
-      <svg
-        viewBox="0 0 100 100"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        className="w-full h-full filter drop-shadow-[0_4px_12px_rgba(37,99,235,0.35)]"
-      >
-        <defs>
-          {/* Signal / Equalizer gradients */}
-          <linearGradient id="eq-1" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="#8B5CF6" />
-            <stop offset="100%" stopColor="#6366F1" />
-          </linearGradient>
-          <linearGradient id="eq-2" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="#F97316" />
-            <stop offset="60%" stopColor="#EC4899" />
-            <stop offset="100%" stopColor="#8B5CF6" />
-          </linearGradient>
-          <linearGradient id="eq-3" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="#FBBF24" />
-            <stop offset="100%" stopColor="#F97316" />
-          </linearGradient>
-
-          {/* Main 3D Ribbon gradients */}
-          <linearGradient id="ribbon-stem" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#00D2FF" />
-            <stop offset="40%" stopColor="#2563EB" />
-            <stop offset="100%" stopColor="#1E1B4B" />
-          </linearGradient>
-
-          <linearGradient id="ribbon-upper" x1="0%" y1="0%" x2="100%" y2="80%">
-            <stop offset="0%" stopColor="#1E40AF" />
-            <stop offset="40%" stopColor="#3B82F6" />
-            <stop offset="80%" stopColor="#06B6D4" />
-            <stop offset="100%" stopColor="#FBBF24" />
-          </linearGradient>
-
-          <linearGradient id="ribbon-loop-mid" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#2563EB" />
-            <stop offset="35%" stopColor="#8B5CF6" />
-            <stop offset="70%" stopColor="#EC4899" />
-            <stop offset="100%" stopColor="#F97316" />
-          </linearGradient>
-
-          <linearGradient id="ribbon-bottom" x1="0%" y1="50%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#4338CA" />
-            <stop offset="40%" stopColor="#7C3AED" />
-            <stop offset="75%" stopColor="#DB2777" />
-            <stop offset="100%" stopColor="#F97316" />
-          </linearGradient>
-        </defs>
-
-        {/* 3 Left Equalizer / Analytics Bars */}
-        <rect x="6" y="52" width="6" height="18" rx="3" fill="url(#eq-1)" />
-        <rect x="15" y="42" width="6.5" height="34" rx="3.25" fill="url(#eq-2)" />
-        <rect x="24.5" y="32" width="6.5" height="48" rx="3.25" fill="url(#eq-3)" />
-
-        {/* Main Sculpted Stem of B */}
-        <path
-          d="M34 14C34 11.79 35.79 10 38 10H56C68 10 77 17 77 28C77 35.5 72 41 64 43.5C75 46.5 81 54 81 64C81 76.5 70.5 86 56 86H38C35.79 86 34 84.21 34 82V14Z"
-          fill="url(#ribbon-stem)"
-        />
-
-        {/* Dynamic Curved Ribbon Loop Overlay */}
-        <path
-          d="M40 10H58C70 10 78 18 78 29C78 37 72 43 62 44.5C69 46.5 78 51 81 59C82.5 63 81.5 69 77 75C71 83 58 86 46 86C41 86 37 84 37 84C46 83 56 79 63 73C70 67 71 61 68 56C65 51 58 48 48 48H39V40H54C62 40 68 36 68 28C68 20 62 16 54 16H38L40 10Z"
-          fill="url(#ribbon-upper)"
-        />
-
-        {/* Bottom swoosh loop with warm pink to orange gradient */}
-        <path
-          d="M38 78C46 78 57 74 65 67C72 61 74 54 69 49C65 45 57 44 48 44C43 51 38 60 38 78Z"
-          fill="url(#ribbon-loop-mid)"
-        />
-
-        <path
-          d="M39 80C50 80 62 76 71 69C78 63 80 55 75 49C71 56 64 64 54 69C46 73 40 76 39 80Z"
-          fill="url(#ribbon-bottom)"
-        />
-
-        {/* Play Button Inset Triangle */}
-        <path
-          d="M48 27L63 36.5L48 46V27Z"
-          fill="#FFFFFF"
-          className="filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)]"
-        />
-      </svg>
+      <img
+        src="/brand-presenter-icon.png"
+        alt="Brand Presenter AI"
+        className="w-full h-full object-contain filter drop-shadow-[0_4px_12px_rgba(37,99,235,0.35)]"
+      />
     </div>
   );
 
