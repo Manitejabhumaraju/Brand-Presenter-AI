@@ -1,6 +1,6 @@
 {
-  "name": "Vouchmark",
-  "description": "Verified Creator Intelligence, Fair Rate Benchmarks & Milestone Escrow Platform",
+  "name": "Brand Presenter AI",
+  "description": "Where Brands Meet Real Creators. Multi-platform creator marketplace with verified reach intelligence, fair rate benchmarks, and milestone escrow.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
