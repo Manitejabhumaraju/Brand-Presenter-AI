@@ -24,7 +24,7 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({
     return (
       <div className={`inline-flex items-center ${className}`}>
         <img
-          src="/brand-presenter-logo.png"
+          src="/brand-presenter-icon.png"
           alt="Brand Presenter AI"
           className={`${heightClass} w-auto object-contain rounded-xl border border-white/10 shadow-lg bg-white/5 backdrop-blur-sm p-1`}
           onError={(e) => {
