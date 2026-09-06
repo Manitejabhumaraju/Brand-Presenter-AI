@@ -24,14 +24,15 @@ import { formatCurrency, formatNumber } from '../../utils/formatters';
 import { PlatformBadge } from '../common/PlatformBadge';
 
 export const CampaignsWorkspaceView: React.FC = () => {
-  const { 
-    campaigns, 
-    setCampaigns, 
-    updateDeliverableStatus, 
-    userRole, 
-    currentCreatorUser, 
+  const {
+    campaigns,
+    setCampaigns,
+    updateDeliverableStatus,
+    userRole,
+    creators,
+    currentCreatorUser,
     updateCurrentCreatorUser,
-    setActiveTab 
+    setActiveTab
   } = useApp();
 
   const [selectedCampaignId, setSelectedCampaignId] = useState<string>(campaigns[0]?.id || '');
@@ -55,6 +56,7 @@ export const CampaignsWorkspaceView: React.FC = () => {
   const [newObjective, setNewObjective] = useState('Direct Conversions & Installs');
   const [newBudget, setNewBudget] = useState(150000);
   const [newDueDate, setNewDueDate] = useState('2026-10-15');
+  const [newCreatorId, setNewCreatorId] = useState(creators[0]?.id || '');
 
   const selectedCampaign = campaigns.find(c => c.id === selectedCampaignId) || campaigns[0];
 
@@ -62,6 +64,7 @@ export const CampaignsWorkspaceView: React.FC = () => {
     e.preventDefault();
     if (!newTitle) return;
 
+    const assignedCreator = creators.find(c => c.id === newCreatorId) || creators[0];
     const newCampId = 'camp_' + Date.now();
     const newCamp: Campaign = {
       id: newCampId,
@@ -76,13 +79,13 @@ export const CampaignsWorkspaceView: React.FC = () => {
       endDate: newDueDate,
       targetPlatforms: ['instagram', 'youtube'],
       targetCategories: ['Fitness', 'Health and Wellness'],
-      creatorIds: ['c1'],
+      creatorIds: [assignedCreator.id],
       deliverables: [
         {
           id: 'del_' + Date.now(),
           campaignId: newCampId,
-          creatorId: currentCreatorUser.id,
-          creatorName: currentCreatorUser.name,
+          creatorId: assignedCreator.id,
+          creatorName: assignedCreator.name,
           payoutAmount: Math.round(newBudget * 0.4),
           title: 'Official Launch Reel + Video',
           platform: 'instagram',
@@ -228,13 +231,15 @@ export const CampaignsWorkspaceView: React.FC = () => {
           </p>
         </div>
 
-        <button
-          onClick={() => setNewCampaignModalOpen(true)}
-          className="flex items-center gap-2 bg-zinc-100 text-zinc-950 px-5 py-2.5 rounded-full text-xs font-bold tracking-tight hover:bg-white transition-colors shadow-sm"
-        >
-          <Plus className="w-3.5 h-3.5" />
-          <span>Create Campaign</span>
-        </button>
+        {userRole === 'brand' && (
+          <button
+            onClick={() => setNewCampaignModalOpen(true)}
+            className="flex items-center gap-2 bg-zinc-100 text-zinc-950 px-5 py-2.5 rounded-full text-xs font-bold tracking-tight hover:bg-white transition-colors shadow-sm"
+          >
+            <Plus className="w-3.5 h-3.5" />
+            <span>Create Campaign</span>
+          </button>
+        )}
       </header>
 
       {/* Portfolio Publication Success Banner */}
@@ -434,7 +439,7 @@ export const CampaignsWorkspaceView: React.FC = () => {
                               </span>
 
                               {/* Creator Action: Submit Media Asset */}
-                              {(deliv.status === 'pending_submission' || deliv.status === 'in_progress' || deliv.status === 'draft' || deliv.status === 'changes_requested') && (
+                              {userRole === 'creator' && (deliv.status === 'pending_submission' || deliv.status === 'in_progress' || deliv.status === 'draft' || deliv.status === 'changes_requested') && (
                                 <button
                                   onClick={() => {
                                     setSubmitModalDeliverable(deliv);
@@ -449,7 +454,7 @@ export const CampaignsWorkspaceView: React.FC = () => {
                               )}
 
                               {/* Brand Actions when In Review */}
-                              {(deliv.status === 'in_review' || deliv.status === 'review') && (
+                              {userRole === 'brand' && (deliv.status === 'in_review' || deliv.status === 'review') && (
                                 <>
                                   <button
                                     onClick={() => handleBrandApproveDeliverable(deliv.id)}
@@ -471,7 +476,7 @@ export const CampaignsWorkspaceView: React.FC = () => {
                               )}
 
                               {/* Creator Action: Publish Completed Deliverable to Portfolio */}
-                              {(deliv.status === 'published' || deliv.status === 'approved') && (
+                              {userRole === 'creator' && (deliv.status === 'published' || deliv.status === 'approved') && (
                                 <button
                                   onClick={() => handlePublishToPortfolio(deliv)}
                                   className="px-3.5 py-1.5 bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/25 font-bold rounded-full text-xs transition-colors flex items-center gap-1.5"
@@ -749,6 +754,20 @@ export const CampaignsWorkspaceView: React.FC = () => {
                   className="w-full px-3.5 py-2.5 bg-zinc-950 border border-zinc-800 rounded-xl text-zinc-100 placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-emerald-500"
                   required
                 />
+              </div>
+
+              <div>
+                <label className="block font-semibold text-zinc-300 mb-1">Assigned Creator</label>
+                <select
+                  value={newCreatorId}
+                  onChange={(e) => setNewCreatorId(e.target.value)}
+                  className="w-full px-3.5 py-2.5 bg-zinc-950 border border-zinc-800 rounded-xl text-zinc-200"
+                  required
+                >
+                  {creators.map(c => (
+                    <option key={c.id} value={c.id}>{c.name} ({c.handle})</option>
+                  ))}
+                </select>
               </div>
 
               <div>
