@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useApp } from '../../context/AppContext';
 import { BrandLogo } from '../common/BrandLogo';
 import { 
@@ -17,7 +17,18 @@ import {
 import { formatNumber } from '../../utils/formatters';
 
 export const PublicLandingView: React.FC = () => {
-  const { creators, setUserRole, setActiveTab, setSelectedCreatorId, theme } = useApp();
+  const { creators, setUserRole, setActiveTab, setSelectedCreatorId, activeTab, theme } = useApp();
+
+  // "Pricing Plans" and "Marketplace Home" both render this same page (the pricing tiers live
+  // further down it) - jump straight to that section instead of leaving the page looking like
+  // nothing happened when the sidebar link is clicked.
+  useEffect(() => {
+    if (activeTab === 'public_pricing') {
+      document.getElementById('pricing-plans')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else if (activeTab === 'public_home') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }, [activeTab]);
 
   const handleExploreDirectory = () => {
     setUserRole('brand');
@@ -26,7 +37,7 @@ export const PublicLandingView: React.FC = () => {
 
   const handleCreatorJoin = () => {
     setUserRole('creator');
-    setActiveTab('creator_dashboard');
+    setActiveTab('creator_onboarding');
   };
 
   return (
@@ -268,7 +279,7 @@ export const PublicLandingView: React.FC = () => {
       </div>
 
       {/* 4. COMMERCIAL PRICING PLANS BENTO */}
-      <div className="space-y-6">
+      <div id="pricing-plans" className="space-y-6 scroll-mt-24">
         <div className="text-center max-w-xl mx-auto">
           <div className="text-xs font-bold uppercase tracking-widest text-blue-400">Tiers & Access</div>
           <h2 className="text-2xl font-bold text-white tracking-tight mt-1">Marketplace Access Plans</h2>

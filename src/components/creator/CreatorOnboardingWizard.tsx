@@ -248,7 +248,7 @@ export const CreatorOnboardingWizard: React.FC<CreatorOnboardingWizardProps> = (
       {step === 2 && (
         <div className="space-y-4 text-xs">
           <p className="text-zinc-400">
-            Vouchmark imports audited reach directly from official platform APIs. Connect at least 1 account to verify audience legitimacy.
+            Brand Presenter AI imports audited reach directly from official platform APIs. Connect at least 1 account to verify audience legitimacy.
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">

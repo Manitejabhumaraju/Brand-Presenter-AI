@@ -247,7 +247,7 @@ export const ConnectPlatformModal: React.FC = () => {
                 <span>API Scopes & Permissions Requested</span>
               </div>
               <p className="text-[11px] text-zinc-500 mb-2 leading-relaxed">
-                Vouchmark strictly requests read-only analytics permissions. We never publish on your behalf, read private messages, or access financial credentials.
+                Brand Presenter AI strictly requests read-only analytics permissions. We never publish on your behalf, read private messages, or access financial credentials.
               </p>
               <div className="flex flex-wrap gap-1.5 font-mono text-[10px] text-zinc-400">
                 {currentOption.scopes.map((s, idx) => (

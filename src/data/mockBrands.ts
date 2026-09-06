@@ -278,7 +278,7 @@ export const mockConversations: Conversation[] = [
         senderId: 'b_postman',
         senderName: 'Postman Growth Team',
         senderRole: 'brand',
-        text: 'Outstanding. We have submitted the formal proposal in Vouchmark workspace at ₹85,000 with 12 months organic usage rights.',
+        text: 'Outstanding. We have submitted the formal proposal in Brand Presenter AI workspace at ₹85,000 with 12 months organic usage rights.',
         timestamp: 'Sep 4, 02:40 PM',
         attachment: {
           type: 'proposal',

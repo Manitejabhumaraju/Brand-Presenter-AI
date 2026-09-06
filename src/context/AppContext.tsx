@@ -274,7 +274,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       id: newConvId,
       creatorId: creator.id,
       brandId: 'brand_current',
-      brandName: 'Vouchmark Verified Partner',
+      brandName: 'Brand Presenter AI Verified Partner',
       creatorName: creator.name,
       creatorHandle: creator.handle,
       campaignTitle: brief.title,
@@ -286,7 +286,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         {
           id: 'msg_init_' + Date.now(),
           senderId: 'brand_current',
-          senderName: 'Vouchmark Verified Partner',
+          senderName: 'Brand Presenter AI Verified Partner',
           senderRole: 'brand',
           text: `Hello ${creator.name}! We would like to invite you to collaborate on our upcoming campaign: "${brief.title}". Objective: ${brief.objective}. Deliverables: ${brief.deliverables}. Budget: ₹${brief.budget.toLocaleString('en-IN')}.`,
           timestamp: 'Just now',
