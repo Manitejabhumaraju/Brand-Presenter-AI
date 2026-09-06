@@ -212,7 +212,7 @@ export const InquiryModal: React.FC = () => {
           <div className="flex items-start gap-2 p-3 bg-zinc-950 border border-zinc-800 rounded-xl text-[11px] text-zinc-400">
             <Info className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
             <span>
-              All inquiries submitted through Vouchmark generate an audited commercial thread protected under marketplace escrow.
+              All inquiries submitted through Brand Presenter AI generate an audited commercial thread protected under marketplace escrow.
             </span>
           </div>
 

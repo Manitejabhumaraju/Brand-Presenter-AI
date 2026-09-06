@@ -239,7 +239,7 @@ export const CreatorProfileView: React.FC<CreatorProfileViewProps> = ({
               <Sparkles className="w-4 h-4 text-emerald-400" />
               <div>
                 <span className="text-[9px] uppercase font-bold text-emerald-400 block leading-tight">
-                  Vouchmark Score
+                  Brand Presenter Score
                 </span>
                 <span className="text-xs font-black text-zinc-100">
                   {creator.aiScore.overall}/100 • Explain Match
@@ -475,7 +475,7 @@ export const CreatorProfileView: React.FC<CreatorProfileViewProps> = ({
           {/* Sidebar Column: Trust & Commercial Summary */}
           <div className="space-y-6">
             
-            {/* Vouchmark AI Score Card Bento */}
+            {/* Brand Presenter Score Card Bento */}
             <div className="bg-zinc-900 p-6 rounded-[2rem] shadow-md border border-zinc-800">
               <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center gap-2">

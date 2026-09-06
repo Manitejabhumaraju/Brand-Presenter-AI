@@ -135,7 +135,7 @@ export const AdminCenterView: React.FC = () => {
           <div className="bg-zinc-900 p-6 sm:p-7 rounded-[2rem] border border-zinc-800 shadow-sm space-y-2">
             <h3 className="font-bold text-xs text-zinc-400 uppercase tracking-widest">Ingestion Pipeline Throttle Engine</h3>
             <p className="text-xs text-zinc-400 leading-relaxed">
-              Vouchmark runs synchronized pull jobs with rate-limit dampening. Instagram Basic Display and YouTube Data API v3 jobs are paced at 60 requests/min max to prevent token revocation and respect upstream quotas.
+              Brand Presenter AI runs synchronized pull jobs with rate-limit dampening. Instagram Basic Display and YouTube Data API v3 jobs are paced at 60 requests/min max to prevent token revocation and respect upstream quotas.
             </p>
           </div>
         </div>

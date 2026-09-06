@@ -28,7 +28,7 @@ import {
 } from 'lucide-react';
 
 export const Sidebar: React.FC = () => {
-  const { userRole, activeTab, setActiveTab, setConnectPlatformModalOpen } = useApp();
+  const { userRole, activeTab, setActiveTab, setUserRole, setConnectPlatformModalOpen } = useApp();
 
   const renderNavGroup = (title: string, items: { id: string; label: string; icon: React.ReactNode; badge?: string }[]) => (
     <div className="mb-6">
@@ -158,13 +158,48 @@ export const Sidebar: React.FC = () => {
 
       {/* PUBLIC VIEW SIDEBAR */}
       {userRole === 'public' && (
-        <>
-          {renderNavGroup('Public Marketplace', [
-            { id: 'public_home', label: 'Marketplace Home', icon: <Sparkles className="w-4 h-4" /> },
-            { id: 'discover', label: 'Creator Directory', icon: <Search className="w-4 h-4" /> },
-            { id: 'public_pricing', label: 'Pricing Plans', icon: <DollarSign className="w-4 h-4" /> }
-          ])}
-        </>
+        <div className="mb-6">
+          <div className="px-3 mb-2 text-[10px] font-bold uppercase tracking-widest text-slate-500">
+            Public Marketplace
+          </div>
+          <div className="space-y-1">
+            <button
+              onClick={() => setActiveTab('public_home')}
+              className={`w-full flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl text-xs font-medium transition-all ${
+                activeTab === 'public_home'
+                  ? 'bg-gradient-to-r from-blue-600/15 via-purple-600/10 to-transparent text-white border border-blue-500/30 shadow-[0_2px_12px_rgba(37,99,235,0.12)] font-semibold'
+                  : 'text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 border border-transparent'
+              }`}
+            >
+              <Sparkles className="w-4 h-4" />
+              <span>Marketplace Home</span>
+            </button>
+            {/* Entering the directory as a public visitor means committing to Brand mode - so the
+                sidebar/nav and the discovery view's actions (Inquire, Save, etc.) stay consistent,
+                the same way the landing page's own "Explore Marketplace as Brand" CTA behaves. */}
+            <button
+              onClick={() => {
+                setUserRole('brand');
+                setActiveTab('discover');
+              }}
+              className="w-full flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl text-xs font-medium transition-all text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 border border-transparent"
+            >
+              <Search className="w-4 h-4" />
+              <span>Creator Directory</span>
+            </button>
+            <button
+              onClick={() => setActiveTab('public_pricing')}
+              className={`w-full flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl text-xs font-medium transition-all ${
+                activeTab === 'public_pricing'
+                  ? 'bg-gradient-to-r from-blue-600/15 via-purple-600/10 to-transparent text-white border border-blue-500/30 shadow-[0_2px_12px_rgba(37,99,235,0.12)] font-semibold'
+                  : 'text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 border border-transparent'
+              }`}
+            >
+              <DollarSign className="w-4 h-4" />
+              <span>Pricing Plans</span>
+            </button>
+          </div>
+        </div>
       )}
 
     </aside>
