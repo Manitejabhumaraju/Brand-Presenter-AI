@@ -1,0 +1,6 @@
+{
+  "name": "Vouchmark",
+  "description": "Verified Creator Intelligence, Fair Rate Benchmarks & Milestone Escrow Platform",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
