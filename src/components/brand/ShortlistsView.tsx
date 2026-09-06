@@ -276,7 +276,17 @@ export const ShortlistsView: React.FC = () => {
                       className="bg-zinc-900 p-4 sm:p-5 rounded-2xl border border-zinc-800 hover:border-zinc-700 transition-colors flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs"
                     >
                       <div className="flex items-center gap-3.5">
-                        <img src={c.avatar} alt={c.name} className="w-11 h-11 rounded-2xl object-cover border border-zinc-800" />
+                        <img 
+                          src={c.avatar} 
+                          alt={c.name} 
+                          referrerPolicy="no-referrer"
+                          onError={(e) => {
+                            const target = e.currentTarget;
+                            target.onerror = null;
+                            target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(c.name)}&background=2563eb&color=fff&bold=true`;
+                          }}
+                          className="w-11 h-11 rounded-2xl object-cover border border-zinc-800" 
+                        />
                         <div>
                           <div className="font-bold text-sm text-zinc-100">{c.name}</div>
                           <div className="text-xs text-zinc-500">{c.handle} • {c.location.city} • {c.categories[0]}</div>

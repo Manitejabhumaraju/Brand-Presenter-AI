@@ -83,6 +83,12 @@ export const CompareModal: React.FC = () => {
                           <img 
                             src={c.avatar} 
                             alt={c.name} 
+                            referrerPolicy="no-referrer"
+                            onError={(e) => {
+                              const target = e.currentTarget;
+                              target.onerror = null;
+                              target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(c.name)}&background=2563eb&color=fff&bold=true`;
+                            }}
                             className="w-12 h-12 rounded-2xl object-cover border border-zinc-800"
                           />
                           <div>

@@ -43,6 +43,12 @@ export const InquiryModal: React.FC = () => {
             <img 
               src={inquiryModalCreator.avatar} 
               alt={inquiryModalCreator.name} 
+              referrerPolicy="no-referrer"
+              onError={(e) => {
+                const target = e.currentTarget;
+                target.onerror = null;
+                target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(inquiryModalCreator.name)}&background=2563eb&color=fff&bold=true`;
+              }}
               className="w-11 h-11 rounded-2xl object-cover border border-zinc-800"
             />
             <div>

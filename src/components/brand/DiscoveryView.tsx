@@ -523,6 +523,12 @@ export const DiscoveryView: React.FC = () => {
                           <img 
                             src={c.avatar} 
                             alt={c.name} 
+                            referrerPolicy="no-referrer"
+                            onError={(e) => {
+                              const target = e.currentTarget;
+                              target.onerror = null;
+                              target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(c.name)}&background=2563eb&color=fff&bold=true`;
+                            }}
                             className="w-13 h-13 rounded-2xl object-cover border border-slate-700"
                           />
                           {c.identityVerified && (
@@ -672,6 +678,12 @@ export const DiscoveryView: React.FC = () => {
                   <img 
                     src={c.avatar} 
                     alt={c.name} 
+                    referrerPolicy="no-referrer"
+                    onError={(e) => {
+                      const target = e.currentTarget;
+                      target.onerror = null;
+                      target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(c.name)}&background=2563eb&color=fff&bold=true`;
+                    }}
                     className="w-12 h-12 rounded-2xl object-cover border border-slate-700 shrink-0"
                   />
                   <div className="min-w-0">
@@ -762,7 +774,17 @@ export const DiscoveryView: React.FC = () => {
                 <tr key={c.id} className="hover:bg-slate-800/50 transition-colors">
                   <td className="py-3.5 px-5">
                     <div className="flex items-center gap-3">
-                      <img src={c.avatar} alt={c.name} className="w-9 h-9 rounded-xl object-cover border border-slate-700" />
+                      <img 
+                        src={c.avatar} 
+                        alt={c.name} 
+                        referrerPolicy="no-referrer"
+                        onError={(e) => {
+                          const target = e.currentTarget;
+                          target.onerror = null;
+                          target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(c.name)}&background=2563eb&color=fff&bold=true`;
+                        }}
+                        className="w-9 h-9 rounded-xl object-cover border border-slate-700" 
+                      />
                       <div>
                         <div className="font-bold text-slate-100">{c.name}</div>
                         <div className="text-[10px] text-slate-400">{c.handle}</div>

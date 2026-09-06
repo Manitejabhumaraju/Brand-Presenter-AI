@@ -306,6 +306,12 @@ export const CampaignsWorkspaceView: React.FC = () => {
                     <img 
                       src={selectedCampaign.brandLogo} 
                       alt={selectedCampaign.brandName} 
+                      referrerPolicy="no-referrer"
+                      onError={(e) => {
+                        const target = e.currentTarget;
+                        target.onerror = null;
+                        target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(selectedCampaign.brandName)}&background=2563eb&color=fff&bold=true`;
+                      }}
                       className="w-13 h-13 rounded-2xl object-cover border border-zinc-800" 
                     />
                     <div>
@@ -561,7 +567,17 @@ export const CampaignsWorkspaceView: React.FC = () => {
                       ].map((c, i) => (
                         <div key={i} className="p-4 bg-zinc-950 rounded-2xl border border-zinc-800 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                           <div className="flex items-center gap-3">
-                            <img src={c.avatar} alt={c.name} className="w-10 h-10 rounded-2xl object-cover border border-zinc-800" />
+                            <img 
+                              src={c.avatar} 
+                              alt={c.name} 
+                              referrerPolicy="no-referrer"
+                              onError={(e) => {
+                                const target = e.currentTarget;
+                                target.onerror = null;
+                                target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(c.name)}&background=2563eb&color=fff&bold=true`;
+                              }}
+                              className="w-10 h-10 rounded-2xl object-cover border border-zinc-800" 
+                            />
                             <div>
                               <div className="font-bold text-sm text-zinc-100">{c.name}</div>
                               <div className="text-zinc-500 text-xs">{c.handle}</div>

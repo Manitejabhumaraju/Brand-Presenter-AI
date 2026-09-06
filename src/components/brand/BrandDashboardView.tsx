@@ -317,7 +317,17 @@ export const BrandDashboardView: React.FC = () => {
             >
               <div>
                 <div className="flex items-center gap-3">
-                  <img src={c.avatar} alt={c.name} className="w-11 h-11 rounded-2xl object-cover border border-zinc-800" />
+                  <img 
+                    src={c.avatar} 
+                    alt={c.name} 
+                    referrerPolicy="no-referrer"
+                    onError={(e) => {
+                      const target = e.currentTarget;
+                      target.onerror = null;
+                      target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(c.name)}&background=2563eb&color=fff&bold=true`;
+                    }}
+                    className="w-11 h-11 rounded-2xl object-cover border border-zinc-800" 
+                  />
                   <div>
                     <div className="font-bold text-sm text-zinc-100 flex items-center gap-1.5">
                       <span>{c.name}</span>

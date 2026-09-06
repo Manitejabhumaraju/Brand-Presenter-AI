@@ -216,7 +216,17 @@ export const PublicLandingView: React.FC = () => {
             >
               <div>
                 <div className="flex items-center gap-3.5">
-                  <img src={c.avatar} alt={c.name} className="w-14 h-14 rounded-2xl object-cover border border-slate-700" />
+                  <img 
+                    src={c.avatar} 
+                    alt={c.name} 
+                    referrerPolicy="no-referrer"
+                    onError={(e) => {
+                      const target = e.currentTarget;
+                      target.onerror = null;
+                      target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(c.name)}&background=2563eb&color=fff&bold=true`;
+                    }}
+                    className="w-14 h-14 rounded-2xl object-cover border border-slate-700" 
+                  />
                   <div>
                     <div className="flex items-center gap-1.5">
                       <span className="font-bold text-sm text-white">{c.name}</span>

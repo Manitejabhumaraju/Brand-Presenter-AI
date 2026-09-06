@@ -210,6 +210,12 @@ export const CreatorOpportunitiesView: React.FC = () => {
                   <img 
                     src={opp.brandLogo} 
                     alt={opp.brandName} 
+                    referrerPolicy="no-referrer"
+                    onError={(e) => {
+                      const target = e.currentTarget;
+                      target.onerror = null;
+                      target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(opp.brandName)}&background=2563eb&color=fff&bold=true`;
+                    }}
                     className="w-12 h-12 rounded-2xl object-cover border border-zinc-800 bg-zinc-950" 
                   />
                   <div>

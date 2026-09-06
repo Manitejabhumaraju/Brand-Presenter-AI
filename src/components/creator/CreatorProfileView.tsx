@@ -124,6 +124,12 @@ export const CreatorProfileView: React.FC<CreatorProfileViewProps> = ({
                 <img 
                   src={creator.avatar} 
                   alt={creator.name} 
+                  referrerPolicy="no-referrer"
+                  onError={(e) => {
+                    const target = e.currentTarget;
+                    target.onerror = null;
+                    target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(creator.name)}&background=2563eb&color=fff&bold=true`;
+                  }}
                   className="w-28 h-28 rounded-2xl object-cover border-4 border-zinc-900 shadow-xl bg-zinc-900"
                 />
                 {creator.identityVerified && (
